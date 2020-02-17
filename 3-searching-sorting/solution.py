@@ -27,8 +27,49 @@
 # Failing either of the last 2 tests (red box) is probably not due to
 # correctness issues if you are passing the other tests.
 
+"""
+Zain Bhaila
+02/17/2020
+Bases cases check for 0 and negative inputs.
+Create an initial approximation to center the binary search around using
+a identity for the natural log. Approximation is good enough that we only
+need to search with a radius of .001 to find a better approximation. Do a binary
+search over all values within the radius, increasing the lower bound if our
+approximation is low, and decreasing the upper bound if our approximation
+is high. Stop the approximation either when we find the exact solution, or when
+our change in values is no longer significant (when the difference is within
+the desired accuracy).
+
+Time Complexity: O(1) - Binary search always occurs in a range of .002, so it
+    executes in constant time. Approximation also occurs in constant time.
+Space Complexity: O(1) - No data structures are used.
+"""
+
+# needed for 'e' value
+import math
+
 # for student use
 EPSILON: float = 1e-6
 
 def student_ln(x: float) -> float:
-    return 0 # TODO implement
+    if x == 0: # base cases
+        return float('-inf')
+    if x < 0:
+        raise ValueError("Invalid Input")
+
+    n = 99999999 * ((x ** (1/99999999)) - 1) # initial approximation
+    l = n - .001 # binary search based algorithm
+    r = n + .001
+    mid = n
+    previous = -1
+    while math.e**mid != x: # search over all values near the solution
+        if math.e**mid > x: # current value is too large
+            r = mid
+            mid = (l+r)/2
+        elif math.e**mid < x: # current value is too small
+            l = mid
+            mid = (l+r)/2
+        if abs(mid - previous) < EPSILON: # check if approximation is good
+            break; # stop looping when a close approximation has been found
+        previous = mid
+    return mid
