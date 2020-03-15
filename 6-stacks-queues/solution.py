@@ -42,7 +42,7 @@ def three(val1, val2, operand): # takes two numbers and an operand string and ap
     val1 = int(val1) # convert inputs to int
     val2 = int(val2)
 
-    if operand ==  # determine the operand and return correct value
+    if operand == "+": # determine the operand and return correct value
         return val1 + val2
     elif operand == "-":
         return val2 - val1
