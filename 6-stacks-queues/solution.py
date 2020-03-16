@@ -45,7 +45,7 @@ def three(val1, val2, operator): # takes two ints and an operator string and app
     elif operator == "*":
         return val1 * val2
     elif operator == "/":
-        return val2 // val1 # integer division
+        return int(val2 / val1)
 
 def evalRPN(tokens: List[str]) -> int:
     if (len(tokens) == 0): # base case for empty list
