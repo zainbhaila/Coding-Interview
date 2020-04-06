@@ -24,14 +24,14 @@ Space Ceomplexity: O(V+E) - needs to create a new graph of directed edges, max s
 '''
 
 def has_cycle(graph):
-    graph = graph.copy()
-    ins = [0 for i in range(len(graph))]
-    for i in range(len(graph)):
+    graph = graph.copy() # copy graph to modify
+    ins = [0 for i in range(len(graph))] # to store in degrees
+    for i in range(len(graph)): # loop to create directed graph
         for j in graph[i]:
             graph[j].remove(i)
-    for i in range(len(graph)): 
+    for i in range(len(graph)): # loop to increment in degrees
         for j in graph[i]: 
             ins[j]+=1
-            if ins[j] > 1:
+            if ins[j] > 1: # if an in degree ever exceeds 1, we have a cycle
                 return True
     return False
