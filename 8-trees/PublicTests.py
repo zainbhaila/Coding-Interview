@@ -40,7 +40,7 @@ class PublicTests(unittest.TestCase):
         """
         Simple tree with five vertices
         """
-        assert is_tree(5, (e for e in [(0, 1), (1, 2), (0, 3), (1, 4)])) == True
+        assert is_tree(5, (e for e in [(0, 1), (2, 1), (0, 3), (1, 4)])) == True
 
 
 
