@@ -28,8 +28,8 @@ bfs to check for connectivity. Start at vertex 0 and traverse all connected vert
 Add visited vertices to a hash and if hash length is the same as n, then all
 nodes were visited.
 
-Time Complexity: O(|E|) - create graph over |E|, bfs only traverses edges from 0 without checking all vertices
-Space Complexity: O(|E|) - store edges as adjacency matrix, worst case |V| storage is upper bounded by |E|
+Time Complexity: O(n) - max out number of edges at n - 1, bfs can only search over n - 1 edges
+Space Complexity: O(n) - store edges as adjacency matrix, up to n - 1 edges
 '''
 
 # graph is a tree if is is connected and has n - 1 edges
@@ -43,6 +43,8 @@ def is_tree(n: int, edges: Generator[Tuple[int, int], None, None]) -> bool:
         graph.setdefault(u, []).append(v)
         graph.setdefault(v, []).append(u)
         edge_count += 1
+        if edge_count > n - 1: # edge count cannot surpass n - 1
+            return False
 
     if edge_count != n - 1: # graph is cyclic or disconnected if number of edges does not equal n - 1
         return False
