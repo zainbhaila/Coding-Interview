@@ -9,13 +9,13 @@ class PublicTests(unittest.TestCase):
         self.assertEqual(num_bsts(2), 2)
 
     def test2(self):
-        self.assertEqual(num_bsts(3), 5)
+        self.assertEqual(num_bsts(40), 2622127042276492108820)
 
     def test3(self):
-        self.assertEqual(num_bsts(5), 42)
+        self.assertEqual(num_bsts(20), 6564120420)
 
     def test4(self):
-        self.assertEqual(num_bsts(4), 14)
+        self.assertEqual(num_bsts(100), 896519947090131496687170070074100632420837521538745909320)
 
 if __name__ == "__main__":
     unittest.main()
